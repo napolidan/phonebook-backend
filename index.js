@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.static('build'))
 
 
-let contacts = [
+let persons = [
     {
         id: 1,
         name: "Arto Hellas",
@@ -35,8 +35,8 @@ let contacts = [
 
 
 const generateId = () => {
-    const maxId = contacts.length > 0
-      ? Math.max(...contacts.map(n => n.id))
+    const maxId = persons.length > 0
+      ? Math.max(...persons.map(n => n.id))
       : 0
     return maxId
 }
@@ -52,12 +52,12 @@ app.get('/info', (request, response) => {
   })
 
 app.get('/api/persons', (request, response) => {
-    response.json(contacts)
+    response.json(persons)
 })
 
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
-    const contact = contacts.find(person => person.id === id)
+    const contact = persons.find(person => person.id === id)
 
     if (contact) {
         response.json(contact)
@@ -76,7 +76,7 @@ app.post('/api/persons', (request, response) =>{
             error: 'content missing'
         })
     }
-    else if (contacts.filter(person => person.name === body.name).length>0) {
+    else if (persons.filter(person => person.name === body.name).length>0) {
         return response.status(400).json({ 
             error: 'name must be unique' 
         })
@@ -90,15 +90,15 @@ app.post('/api/persons', (request, response) =>{
         number: body.number
     }
 
-    contacts = contacts.concat(newPerson)
+    persons = persons.concat(newPerson)
 
     response.json(newPerson)
 })
 
 app.delete('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
-    const contact = contacts.filter(person => person.id != id)
-    contacts = contact
+    const contact = persons.filter(person => person.id != id)
+    persons = contact
 
     response.status(204).end()
 })
