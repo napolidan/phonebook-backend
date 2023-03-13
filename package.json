@@ -8,9 +8,10 @@
     "dev": "nodemon index.js",
     "build:ui": "rm -rf build && cd ../../../React-Apps/part2/phonebook && npm run build --prod && cp -r build ../../../part3/phonebookBack/phonebook-backend",
     "deploy": "git push origin main",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",   
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "proxy": "http://localhost:3001",
   "author": "Daniel Napoli",
   "license": "ISC",
   "dependencies": {
