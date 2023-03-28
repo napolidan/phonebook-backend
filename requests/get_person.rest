@@ -1,1 +1,7 @@
-get http://localhost:3001/api/persons/641cb52be6f82be12838b940
+PUT http://localhost:3001/api/persons/641df569871d0370e624f820
+Content-Type: application/json
+
+{
+    "name": "daftpink",
+    "number": "389428924"
+}
